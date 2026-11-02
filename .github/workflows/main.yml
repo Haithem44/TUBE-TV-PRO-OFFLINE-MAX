@@ -1,4 +1,3 @@
-
 name: Build TUBE TV PRO APK
 
 on:
@@ -42,5 +41,4 @@ jobs:
         with:
           name: TUBE-TV-PRO-OFFLINE-MAX-debug
           path: app/build/outputs/apk/debug/*.apk
-          if-no-files-found: 
-    error
+          if-no-files-found: error
