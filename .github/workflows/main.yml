@@ -1,34 +1,53 @@
-name: Build Android APK
+Name: Build Android APK
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
-  workflow_dispatch:
+On:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest # استخدام أحدث بيئة تشغيل متوافقة
+Push:
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4 # تحديث إجراء الـ checkout ليتوافق مع الإصدارات الحديثة لـ Node.js
+Branches: [main, master]
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v5 # الترقية إلى الإصدار الخامس كما يطلب النظام
-        with:
-          distribution: 'temurin'
-          java-version: '17' # قم بتغيير الإصدار إذا كان مشروعك يتطلب إصداراً آخر (مثل 11 أو 21)
+Pull_request:
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+Branches: [main, master]
 
-      - name: Build APK with Gradle
-        run: ./gradlew assembleRelease # أو assembleDebug حسب نوع البناء الذي تحتاجه
+Workflow_dispatch:
 
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release-apk
-          path: app/build/outputs/apk/release/*.apk # تأكد من مسار ملف الـ APK الناتج في مشروعك
+Jobs:
+
+Build:
+
+Runs-on: ubuntu-latest # Use the latest compatible runtime environment
+
+Steps:
+
+- Name: Checkout Repository
+
+Uses: actions/checkout@v4 # Update the checkout procedure to be compatible with the latest versions of Node.js
+
+- Name: Set up JDK 17
+
+Uses: actions/setup-java@v5 # Upgrade to version 5 as required by the system
+
+With:
+
+Distribution: 'temurin'
+
+Java-version: '17' # Change the version if your project requires a different version (e.g., 11 or 21)
+
+- Name: Grant execute permission for gradlew
+
+Run: chmod +x gradlew
+
+- Name: Build APK with Gradle
+
+Run: ./gradlew assembleRelease # Or assembleDebug depending on the build type  You need it:
+
+- Name: Upload APK Artifact
+
+Uses: actions/upload-artifact@v4
+
+With:
+
+Name: app-release-apk
+
+Path: app/build/outputs/apk/release/*.apk # Make sure the path to the resulting APK file is correct in your project.
